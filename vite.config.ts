@@ -68,6 +68,8 @@ export default defineConfig(({ command, isPreview }) => ({
         skipWaiting: true,
         clientsClaim: true,
         cleanupOutdatedCaches: true,
+        // Opening a file in its own tab (the résumé PDF) must reach the file, not fall back to the app shell
+        navigateFallbackDenylist: [/\/[^/]+\.[a-z0-9]+$/i],
         // Matched on the pathname so the routes work under any base and at the dev root alike
         runtimeCaching: [
           {
