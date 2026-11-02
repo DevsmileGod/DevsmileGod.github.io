@@ -70,7 +70,13 @@ export const resetSnapshotForTests = () => {
 /** Repos to list first, in this order, ahead of the rest by last update. Names as on GitHub. */
 export const FEATURED_REPOS: string[] = [];
 /** Repos that never show, lowercase: the profile README repo, and GitHub-achievement test repos. */
-export const HIDDEN_REPOS = new Set<string>([GITHUB_USERNAME.toLowerCase(), "achievement_test", "pullshark-test"]);
+export const HIDDEN_REPOS = new Set<string>([
+  GITHUB_USERNAME.toLowerCase(),
+  // This site's own repository
+  `${GITHUB_USERNAME.toLowerCase()}.github.io`,
+  "achievement_test",
+  "pullshark-test",
+]);
 
 /** Featured first in their given order, then everything else as GitHub returned it, hidden ones dropped. */
 export function arrangeRepositories(repos: GitHubRepo[]): GitHubRepo[] {

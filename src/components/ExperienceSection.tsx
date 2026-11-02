@@ -151,7 +151,7 @@ const ExperienceSection = () => {
               const hidden = exp.achievements.length - VISIBLE;
               const panel = `exp-${i}`;
               return (
-                <li key={exp.company} className="relative pb-24 lg:pb-40">
+                <li key={`${exp.company}-${exp.period}`} className="relative pb-24 lg:pb-40">
                   <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16 lg:items-start">
                     {/* Pinned while this role's achievements scroll past */}
                     <header className="relative lg:sticky lg:top-[15vh]">

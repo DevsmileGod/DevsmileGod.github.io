@@ -1,22 +1,20 @@
 import {
-  Activity,
-  BellOff,
   Bot,
-  Cpu,
+  Briefcase,
   Database,
-  FileSearch,
+  Gamepad2,
   GitBranch,
-  Microscope,
+  Layers,
+  Mail,
+  Scissors,
   Server,
+  Sparkles,
   Split,
-  TrendingUp,
   Workflow,
-  Zap,
-  Gauge,
   type LucideIcon,
 } from "lucide-react";
 
-export type ProjectCategory = "AI" | "ML" | "Backend" | "Data" | "MLOps" | "Full-stack";
+export type ProjectCategory = "AI" | "ML" | "Backend" | "Data" | "MLOps" | "Full-stack" | "Desktop" | "Game";
 
 export interface Project {
   slug: string; // URL friendly identifier
@@ -37,226 +35,190 @@ export interface Project {
   origin?: string;
 }
 
-// Professional case studies from the résumé. Every figure is the résumé's own; employer specifics stay general.
+// Professional work from the résumé, and open-source projects from GitHub. The résumé quotes no
+// figures, so none appear here.
 export const projects: Project[] = [
-  // Black Sesame Technologies: autonomous-driving AI and automotive AI chips
+  // Independent consulting
   {
-    slug: "int8-perception-models",
-    title: "INT8 Perception Models for In-Vehicle AI Chips",
-    cardTitle: "INT8 Perception Models",
+    slug: "business-ai-agents",
+    title: "LLM Agents That Automate Business Workflows",
+    cardTitle: "AI Agents for Business",
     description:
-      "30+ PyTorch perception models deployed onto in-vehicle AI chips across five automotive customer programs, quantized to INT8.",
+      "LLM-based agents, designed and built for clients, that take repetitive business workflows off people.",
     category: "AI",
-    problem:
-      "Autonomous-driving perception models had to run on in-vehicle AI chips, inside tight latency and memory budgets",
-    solution: "Quantized the models to INT8 and deployed them to the automotive AI chip platform",
-    outcome: "Up to 3.2× lower inference latency and 60% lower memory usage, with less than 1% mAP loss",
-    tags: ["PyTorch", "INT8 quantization", "Perception", "Model deployment"],
-    icon: Cpu,
-    featured: true,
-    origin: "Black Sesame Technologies",
-  },
-  {
-    slug: "cuda-kernels",
-    title: "C++ and CUDA Kernel Optimization",
-    cardTitle: "CUDA Kernels",
-    description: "C++ and CUDA kernels developed and optimized for model inference.",
-    category: "AI",
-    solution: "Developed and optimized C++ and CUDA kernels on the inference path",
-    outcome: "Inference throughput up 45%",
-    tags: ["C++", "CUDA", "Inference optimization"],
-    icon: Zap,
-    featured: true,
-    origin: "Black Sesame Technologies",
-  },
-  {
-    slug: "rag-documentation-assistant",
-    title: "A RAG Assistant over 200,000+ Pages of Documentation",
-    cardTitle: "RAG Documentation Assistant",
-    description:
-      "A retrieval-augmented generation assistant over 200,000+ pages of technical documentation, adopted by 600+ engineers.",
-    category: "AI",
-    problem: "The answers engineers needed sat somewhere in 200,000+ pages of technical documentation",
-    solution: "Built a RAG assistant that retrieves the relevant documentation and answers from it",
-    outcome: "Adopted by 600+ engineers, improving ticket resolution by 35%",
-    tags: ["RAG", "LLMs", "Python"],
+    problem: "Businesses lose hours to repetitive, manual workflows",
+    solution: "Design and build LLM-based agents that carry out those workflows, applying generative AI and RAG",
+    outcome: "Less manual effort, delivered from requirements through deployment and ongoing support",
+    tags: ["LLMs", "AI agents", "RAG", "Python"],
     icon: Bot,
     featured: true,
-    origin: "Black Sesame Technologies",
+    origin: "Independent consulting",
   },
   {
-    slug: "compiler-log-troubleshooting",
-    title: "LLM Tools for Compiler-Log Troubleshooting",
-    cardTitle: "Compiler-Log Troubleshooting",
-    description: "LLM-based tools that analyze model-compiler logs and help engineers fix model-conversion errors.",
-    category: "AI",
-    problem: "Model-conversion errors meant digging through compiler logs by hand",
-    solution: "Developed LLM-based tools for compiler-log analysis and troubleshooting",
-    outcome: "Helped resolve approximately 40% of common model-conversion errors",
-    tags: ["LLMs", "AI agents", "Python"],
-    icon: FileSearch,
-    featured: true,
-    origin: "Black Sesame Technologies",
-  },
-  {
-    slug: "llm-inference-serving",
-    title: "LLM Inference Serving on vLLM and Kubernetes",
-    cardTitle: "LLM Inference Serving",
-    description: "LLM inference services optimized with vLLM, dynamic batching, and autoscaling on Kubernetes.",
-    category: "MLOps",
-    problem: "Serving LLM queries on GPUs was expensive per query",
-    solution: "Optimized the inference services with vLLM, dynamic batching, and Kubernetes autoscaling",
-    outcome: "GPU cost per query cut by 50%",
-    tags: ["vLLM", "Kubernetes", "Dynamic batching", "Autoscaling"],
-    icon: Gauge,
-    featured: true,
-    origin: "Black Sesame Technologies",
-  },
-
-  // FiberHome Technologies: AI operations for telecommunications infrastructure
-  {
-    slug: "telemetry-anomaly-detection",
-    title: "Anomaly Detection over 2 Billion Telemetry Records a Day",
-    cardTitle: "Telemetry Anomaly Detection",
+    slug: "client-software",
+    title: "Custom Software and Third-Party API Integrations",
+    cardTitle: "Custom Software",
     description:
-      "LSTM and Isolation Forest models analyzing more than two billion telemetry records a day from telecommunications infrastructure.",
-    category: "ML",
-    problem: "Network faults had to be caught in more than two billion telemetry records a day",
-    solution: "Built anomaly detection with LSTM and Isolation Forest, and predictive monitoring for link degradation",
-    outcome: "Potential link degradation flagged about 30 minutes earlier, helping reduce outages by 25%",
-    tags: ["LSTM", "Isolation Forest", "Python", "Predictive monitoring"],
-    icon: Activity,
-    featured: true,
-    origin: "FiberHome Technologies",
-  },
-  {
-    slug: "root-cause-analysis",
-    title: "Root-Cause Analysis for Network Alarms",
-    cardTitle: "Root-Cause Analysis",
-    description: "Root-cause analysis workflows for telecom operations, cutting alarm noise and time to repair.",
-    category: "ML",
-    solution: "Implemented root-cause analysis workflows over the network's alarms",
-    outcome: "Alarm noise down 70% and mean time to repair (MTTR) down 40%",
-    tags: ["Machine learning", "Telecom operations"],
-    icon: BellOff,
-    origin: "FiberHome Technologies",
-  },
-  {
-    slug: "bert-ticket-routing",
-    title: "BERT Ticket Classification and Routing",
-    cardTitle: "BERT Ticket Routing",
-    description: "A BERT-based system that classifies operations tickets and routes them.",
-    category: "ML",
-    solution: "Developed a BERT-based ticket classification and routing system",
-    outcome: "91% accuracy, saving an estimated 3,000 engineering hours a year",
-    tags: ["BERT", "NLP", "Python"],
-    icon: Split,
-    origin: "FiberHome Technologies",
-  },
-  {
-    slug: "realtime-streaming-pipelines",
-    title: "Real-Time Pipelines on Kafka and Flink",
-    cardTitle: "Streaming Pipelines",
-    description: "Real-time data pipelines on Kafka and Flink feeding the prediction workflows.",
-    category: "Data",
-    solution: "Built real-time data pipelines using Kafka and Flink",
-    outcome: "Prediction workflows supported with sub-second processing latency",
-    tags: ["Kafka", "Flink", "Streaming"],
-    icon: Workflow,
-    origin: "FiberHome Technologies",
-  },
-  {
-    slug: "telecom-microservices",
-    title: "Go and Java Microservices at 10,000+ Requests per Second",
-    cardTitle: "Microservices at 10k RPS",
-    description:
-      "Go and Java microservices in Kubernetes environments, each capable of more than 10,000 requests per second.",
-    category: "Backend",
-    solution: "Developed Go and Java microservices and ran them in Kubernetes environments",
-    outcome: "Capable of handling more than 10,000 requests per second",
-    tags: ["Go", "Java", "Kubernetes", "Microservices"],
-    icon: Server,
-    origin: "FiberHome Technologies",
-  },
-  {
-    slug: "mlflow-model-lifecycle",
-    title: "MLflow Model Lifecycle",
-    cardTitle: "MLflow Model Lifecycle",
-    description: "MLflow-based model lifecycle workflows for training, registering, and releasing models.",
-    category: "MLOps",
-    problem: "Releasing a new model version took four weeks",
-    solution: "Implemented MLflow-based model lifecycle workflows",
-    outcome: "Model release cycle cut from four weeks to one",
-    tags: ["MLflow", "MLOps", "Python"],
-    icon: GitBranch,
-    origin: "FiberHome Technologies",
-  },
-
-  // Yangtze Memory Technologies: semiconductor manufacturing
-  {
-    slug: "wafer-defect-classification",
-    title: "ResNet Wafer Defect Classification",
-    cardTitle: "Wafer Defect Classification",
-    description: "A ResNet-based classifier for semiconductor wafer defect inspection.",
-    category: "ML",
-    problem: "Wafer defects were reviewed manually",
-    solution: "Developed a ResNet-based wafer defect classification system",
-    outcome: "95% accuracy, automating approximately 60% of manual defect review",
-    tags: ["ResNet", "PyTorch", "Computer vision"],
-    icon: Microscope,
-    featured: true,
-    origin: "Yangtze Memory Technologies",
-  },
-  {
-    slug: "manufacturing-anomaly-detection",
-    title: "Manufacturing Anomaly Detection",
-    cardTitle: "Manufacturing Anomaly Detection",
-    description: "Anomaly detection that identifies manufacturing irregularities and supports process optimization.",
-    category: "ML",
-    solution: "Implemented anomaly detection over manufacturing process data",
-    outcome: "Contributed to a 2% yield improvement",
-    tags: ["Anomaly detection", "Python", "Process data"],
-    icon: TrendingUp,
-    origin: "Yangtze Memory Technologies",
-  },
-  {
-    slug: "manufacturing-data-platform",
-    title: "MES Data Services, Spark Pipelines, and Engineering Dashboards",
-    cardTitle: "Manufacturing Data Platform",
-    description:
-      "Python and Java services for manufacturing execution system (MES) data, Spark and Hive pipelines for analytics, and React dashboards for engineers.",
+      "End-to-end custom software for clients across industries: full-stack applications, backend services, and API integrations.",
     category: "Full-stack",
     solution:
-      "Built MES data services, Apache Spark and Hive pipelines for analytics and reporting, and React dashboards for manufacturing data and defect analysis",
-    outcome: "Millions of records processed a day; dashboards used by 100+ engineers",
-    tags: ["Python", "Java", "Apache Spark", "Hive", "React"],
+      "Own each engagement end to end: requirements, architecture, development, testing, deployment, and ongoing support",
+    tags: ["Full-stack", "REST APIs", "API integration", "Solution architecture"],
+    icon: Briefcase,
+    featured: true,
+    origin: "Independent consulting",
+  },
+
+  // Waabi
+  {
+    slug: "multi-agent-workflows",
+    title: "LLM Applications and Multi-Agent Workflows",
+    cardTitle: "Multi-Agent Workflows",
+    description:
+      "LLM-powered applications and multi-agent workflows for data processing, decision support, and business automation.",
+    category: "AI",
+    solution: "Built LLM-powered applications and multi-agent workflows, and brought them into production systems",
+    outcome: "Machine learning and intelligent automation running in production",
+    tags: ["LLMs", "Multi-agent systems", "Automation", "Python"],
+    icon: Workflow,
+    featured: true,
+    origin: "Waabi",
+  },
+  {
+    slug: "multimodal-ai",
+    title: "Multimodal AI: Text, Image, and Audio",
+    cardTitle: "Multimodal AI",
+    description: "Multimodal AI features that combine text, image, and audio processing.",
+    category: "AI",
+    solution: "Implemented features that process text, image, and audio together",
+    tags: ["Multimodal AI", "Generative AI", "Python"],
+    icon: Layers,
+    featured: true,
+    origin: "Waabi",
+  },
+  {
+    slug: "ml-pipelines",
+    title: "ML Pipelines, End to End",
+    cardTitle: "ML Pipelines",
+    description:
+      "Machine learning pipelines owned from data engineering through experimentation, evaluation, and deployment.",
+    category: "MLOps",
+    solution: "Owned the pipelines end to end, evaluated emerging AI technologies, and set best practices for the team",
+    outcome: "Better model performance and scalability",
+    tags: ["ML pipelines", "MLOps", "Data engineering", "Model evaluation"],
+    icon: GitBranch,
+    featured: true,
+    origin: "Waabi",
+  },
+
+  // BenchSci
+  {
+    slug: "nlp-predictive-modeling",
+    title: "NLP and Predictive Modeling",
+    cardTitle: "NLP and Predictive Models",
+    description: "NLP and predictive modeling features for intelligent automation and data analysis.",
+    category: "ML",
+    solution:
+      "Built NLP and predictive modeling features with Python and ML frameworks, on pipelines covering data preparation, training, evaluation, and deployment",
+    tags: ["NLP", "Predictive modeling", "Machine learning", "Python"],
+    icon: Split,
+    featured: true,
+    origin: "BenchSci",
+  },
+  {
+    slug: "generative-ai-integration",
+    title: "Generative AI in Existing Products",
+    cardTitle: "Generative AI Integration",
+    description: "Generative AI and LLM services built into products customers already used.",
+    category: "AI",
+    solution:
+      "Integrated generative AI capabilities into existing products, and guided engineers toward scalable designs",
+    tags: ["Generative AI", "LLMs", "Python"],
+    icon: Sparkles,
+    origin: "BenchSci",
+  },
+  {
+    slug: "backend-services",
+    title: "Backend Services and Data Processing",
+    cardTitle: "Backend Services",
+    description:
+      "Backend services and web applications behind business operations and customer-facing platforms, with data processing and external integrations.",
+    category: "Backend",
+    solution:
+      "Built backend services and data processing modules, integrated external services, and automated manual internal processes",
+    outcome: "More reliable production systems through ongoing maintenance",
+    tags: ["Backend development", "Data processing", "API integration", "Python"],
+    icon: Server,
+    origin: "BenchSci",
+  },
+
+  // Tech Mahindra and Architech
+  {
+    slug: "web-apps-rest-apis",
+    title: "Web Applications, REST APIs, and SQL",
+    cardTitle: "Web Apps and REST APIs",
+    description:
+      "Web applications in Python, JavaScript, and React, with REST APIs between frontend and backend and SQL databases behind them.",
+    category: "Full-stack",
+    solution:
+      "Built the applications and their REST APIs, designed database structures, and tuned SQL queries for growing data volumes",
+    outcome: "Better application performance, and databases that kept up with growing data",
+    tags: ["Python", "JavaScript", "React", "REST APIs", "SQL"],
     icon: Database,
-    origin: "Yangtze Memory Technologies",
+    origin: "Tech Mahindra · Architech",
+  },
+
+  // Open source, on GitHub
+  {
+    slug: "pixel-asset-extractor",
+    title: "Pixel Asset Extractor",
+    description: "A Python desktop app that cuts clean, transparent PNG sprites out of large pixel-art sheets.",
+    category: "Desktop",
+    tags: ["Python", "PySide6", "OpenCV"],
+    icon: Scissors,
+    repo: "https://github.com/DevsmileGod/pixel_asset_extractor",
+    origin: "Open source",
+  },
+  {
+    slug: "auto-gmessage",
+    title: "Auto_GMessage",
+    description:
+      "A Python desktop app for Gmail outreach: it sends a unique first message to each recipient, then watches the inbox and replies to anyone who answers.",
+    category: "Desktop",
+    tags: ["Python", "Gmail", "Automation"],
+    icon: Mail,
+    repo: "https://github.com/DevsmileGod/Auto_GMessage",
+    origin: "Open source",
+  },
+  {
+    slug: "hell-farmers",
+    title: "Hell Farmers",
+    description: "A 2D browser game in a single HTML file, with boss fights and sound.",
+    category: "Game",
+    tags: ["JavaScript", "HTML", "Game"],
+    icon: Gamepad2,
+    repo: "https://github.com/DevsmileGod/2D-full-game",
+    origin: "Open source",
   },
 ];
 
-/** What the Work section shows, by slug, newest employer first */
+/** What the Work section shows, by slug, newest work first */
 export const WORK = {
-  automotive: [
-    "int8-perception-models",
-    "cuda-kernels",
-    "rag-documentation-assistant",
-    "compiler-log-troubleshooting",
-    "llm-inference-serving",
-  ],
-  telecom: [
-    "telemetry-anomaly-detection",
-    "root-cause-analysis",
-    "bert-ticket-routing",
-    "realtime-streaming-pipelines",
-    "telecom-microservices",
-    "mlflow-model-lifecycle",
-  ],
-  manufacturing: ["wafer-defect-classification", "manufacturing-anomaly-detection", "manufacturing-data-platform"],
+  independent: ["business-ai-agents", "client-software"],
+  waabi: ["multi-agent-workflows", "multimodal-ai", "ml-pipelines"],
+  benchsci: ["nlp-predictive-modeling", "generative-ai-integration", "backend-services"],
+  early: ["web-apps-rest-apis"],
+  openSource: ["pixel-asset-extractor", "auto-gmessage", "hell-farmers"],
 } as const;
 
 /** Every project the Work section shows, in order */
-export const WORK_ORDER: readonly string[] = [...WORK.automotive, ...WORK.telecom, ...WORK.manufacturing];
+export const WORK_ORDER: readonly string[] = [
+  ...WORK.independent,
+  ...WORK.waabi,
+  ...WORK.benchsci,
+  ...WORK.early,
+  ...WORK.openSource,
+];
 
 export const projectBySlug = (slug: string) => {
   const found = projects.find((p) => p.slug === slug);
