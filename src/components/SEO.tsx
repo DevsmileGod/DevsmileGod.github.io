@@ -9,8 +9,8 @@ interface SEOProps {
   type?: string;
 }
 
-const DEFAULT_TITLE = `${PROFILE.name} | Software Engineer | AI Engineer`;
-const DEFAULT_DESCRIPTION = `${PROFILE.name}, Software Engineer and AI Engineer: model deployment and optimization, LLM applications, RAG, and AI agents, with Python, C++, PyTorch, and CUDA.`;
+const DEFAULT_TITLE = `${PROFILE.name} | ${PROFILE.title} | ${PROFILE.focus}`;
+const DEFAULT_DESCRIPTION = `${PROFILE.name}, Senior Software Engineer and AI/ML Engineer: LLM applications, AI agents, RAG, ML pipelines, and full-stack software in Python, JavaScript, and React.`;
 
 /**
  * Per-route meta. index.html carries the same tags marked data-rh, so Helmet replaces them
@@ -20,7 +20,7 @@ const DEFAULT_DESCRIPTION = `${PROFILE.name}, Software Engineer and AI Engineer:
 const SEO = ({
   title = DEFAULT_TITLE,
   description = DEFAULT_DESCRIPTION,
-  image = `${SITE_URL}og-image.jpg?v=2`,
+  image = `${SITE_URL}og-image.jpg?v=3`,
   url = SITE_URL,
   type = "website",
 }: SEOProps) => {

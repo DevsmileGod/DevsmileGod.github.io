@@ -407,7 +407,7 @@ const cameraAt = (v: number) => {
 /** The year on the final level: the first year → this year as the last stretch plays */
 const yearAt = (v: number) => FIRST_YEAR + (THIS_YEAR - FIRST_YEAR) * phase(v, 0.82, 0.96);
 
-/** The years of experience, for the headline: "Eight years," */
+/** The years of experience, for the headline: "Nine years," */
 const YEARS = inWords(yearsSince(PROFILE.careerStart));
 
 /**
@@ -419,11 +419,11 @@ export const ExperienceLede = ({ headingClassName, className }: { headingClassNa
     <h2 className={headingClassName}>
       {YEARS} years,
       <br />
-      three industries.
+      web to AI.
     </h2>
     <p className={className}>
-      Semiconductor manufacturing at Yangtze Memory, telecom AI at FiberHome, autonomous-driving AI at Black Sesame,{" "}
-      <span className="text-snow">and now independent work on LLMs and AI agents</span>.
+      Web applications at Architech and Tech Mahindra, backend and AI/ML at BenchSci, LLM and multi-agent systems at
+      Waabi, <span className="text-snow">and now independent work on custom software and AI agents</span>.
     </p>
   </>
 );
@@ -546,12 +546,11 @@ const Era = ({ index, progress }: { index: number; progress: MotionValue<number>
 };
 
 /**
- * The career, shown as a pull-back after noth.in's zoom-out: it opens on one model I optimized
- * filling the screen, then the camera pulls back level by level, each level three times the
- * last: it is one of 30+ perception models; they shipped across five automotive customer
- * programs; that is one AI chip platform, with perception and LLM tools on it; and around it,
- * the employers from the first year to today, the year rolling as they change. Real figures
- * only. At the end a line drops out of the employers' column and carries on as the rail of
+ * The career, shown as a pull-back after noth.in's zoom-out: it opens on one AI agent filling
+ * the screen, then the camera pulls back level by level, each level three times the last: it is
+ * one of many agents and models; they run inside workflows for data, decisions, and automation;
+ * that is one production system, with agents and ML pipelines in it; and around it, the
+ * employers from the first year to today, the year rolling as they change. Résumé facts only. At the end a line drops out of the employers' column and carries on as the rail of
  * the roles below.
  */
 export const PlatformZoom = () => {
@@ -575,26 +574,26 @@ export const PlatformZoom = () => {
             className="absolute left-[33.3%] right-[33.3%] top-[33.3%] bottom-[33.3%] rounded-2xl border border-emerald-400/50 shadow-[0_0_80px_hsl(var(--accent-500)/0.18)]"
           >
             <p className="absolute left-1/2 -translate-x-1/2 top-full mt-4 t-figure text-[13px] uppercase tracking-[0.16em] text-emerald-300 whitespace-nowrap">
-              ML in production · {FIRST_YEAR} → today
+              Software in production · {FIRST_YEAR} → today
             </p>
           </motion.div>
         </Level>
 
-        {/* Level 3: the platform, with both kinds of AI on it */}
+        {/* Level 3: the system, with both kinds of AI in it */}
         <Level index={3} camera={camera}>
           <div className="absolute left-[22%] right-[22%] top-[20%] bottom-[20%] rounded-[2rem] border border-emerald-400/55 bg-[radial-gradient(60%_60%_at_50%_45%,hsl(var(--accent-500)/0.08),transparent_70%)]" />
           <p className="absolute left-1/2 -translate-x-1/2 top-[22.5%] t-heading text-[clamp(1rem,2.4vw,2.25rem)] text-snow whitespace-nowrap">
-            Automotive AI chip platform
+            Production AI system
           </p>
           <span className="absolute left-1/2 -translate-x-1/2 top-[9%] md:left-auto md:translate-x-0 md:right-[79%] md:top-1/2 md:-translate-y-1/2 md:mr-4 rounded-pill border border-snow/30 bg-night px-4 py-2 text-[clamp(0.875rem,1.3vw,1.15rem)] text-snow whitespace-nowrap">
-            Perception models
+            LLM agents
           </span>
           <span className="absolute left-1/2 -translate-x-1/2 top-[84%] md:translate-x-0 md:left-[79%] md:top-1/2 md:-translate-y-1/2 md:ml-4 rounded-pill border border-snow/30 bg-night px-4 py-2 text-[clamp(0.875rem,1.3vw,1.15rem)] text-snow whitespace-nowrap">
-            LLM tools
+            ML pipelines
           </span>
         </Level>
 
-        {/* Level 2: who the models shipped to, and who shipped them */}
+        {/* Level 2: what the agents do */}
         <Level index={2} camera={camera}>
           <svg
             aria-hidden="true"
@@ -626,14 +625,14 @@ export const PlatformZoom = () => {
           <div className="absolute left-[33.3%] right-[33.3%] top-[33.3%] bottom-[33.3%] rounded-2xl border border-dashed border-snow/35" />
           {[
             [
-              "Five customer programs",
+              "Data processing",
               "left-1/2 -translate-x-1/2 top-[7%] w-[70%] md:translate-x-0 md:left-[2%] md:top-1/2 md:-translate-y-1/2 md:w-[14%]",
             ],
             [
-              "Tier-1 suppliers",
+              "Decision support",
               "left-1/2 -translate-x-1/2 top-[69%] w-[70%] md:translate-x-0 md:left-auto md:right-[2%] md:top-1/2 md:-translate-y-1/2 md:w-[14%]",
             ],
-            ["A team of seven", "left-1/2 -translate-x-1/2 top-[77%] md:top-[80%] w-[50%] md:w-[20%]"],
+            ["Business automation", "left-1/2 -translate-x-1/2 top-[77%] md:top-[80%] w-[50%] md:w-[20%]"],
           ].map(([label, pos]) => (
             <p
               key={label}
@@ -644,7 +643,7 @@ export const PlatformZoom = () => {
           ))}
         </Level>
 
-        {/* Level 1: one of 30+ models */}
+        {/* Level 1: one of many agents and models */}
         <Level index={1} camera={camera}>
           {[
             [TILES_WIDE, "hidden md:block"],
@@ -666,14 +665,14 @@ export const PlatformZoom = () => {
           )}
         </Level>
 
-        {/* Level 0: the model the camera starts on */}
+        {/* Level 0: the agent the camera starts on */}
         <Level index={0} camera={camera}>
           <div className="absolute left-[7%] right-[7%] top-[12%] bottom-[26%] md:bottom-[25%] rounded-[2rem] border border-emerald-400/60 bg-[radial-gradient(70%_70%_at_50%_40%,hsl(var(--accent-500)/0.22),hsl(var(--night))_70%)] flex flex-col items-center justify-center text-center px-[6%]">
-            <p className="t-label">One perception model, quantized</p>
-            <p className="mt-6 t-statement text-[clamp(3rem,10vw,10rem)] leading-[0.9]">3.2× faster</p>
+            <p className="t-label">One LLM agent, in production</p>
+            <p className="mt-6 t-statement text-[clamp(3rem,10vw,10rem)] leading-[0.9]">Less manual work</p>
             <p className="mt-6 t-body text-snow/70 text-[clamp(0.9rem,1.5vw,1.25rem)] max-w-2xl">
-              INT8 quantization for in-vehicle AI chips: up to 3.2× lower inference latency and 60% lower memory usage,
-              with less than 1% mAP loss.
+              An agent that takes a repetitive business workflow off people's hands, built from requirements through
+              deployment and ongoing support.
             </p>
           </div>
         </Level>
@@ -708,16 +707,16 @@ export const PlatformZoom = () => {
         </motion.div>
 
         <Caption index={0} camera={camera}>
-          INT8 quantization · one model on the chip
+          One agent · one workflow automated
         </Caption>
         <Caption index={1} camera={camera}>
-          One of 30+ perception models I deployed
+          One of the agents and models I have shipped
         </Caption>
         <Caption index={2} camera={camera}>
-          Shipped across five automotive customer programs
+          Workflows for data, decisions, and automation
         </Caption>
         <Caption index={3} camera={camera}>
-          One AI chip platform, perception and LLM tools
+          One production system: agents and ML pipelines
         </Caption>
       </div>
     </div>

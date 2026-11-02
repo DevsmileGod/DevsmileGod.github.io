@@ -11,12 +11,11 @@ import { WorkScene } from "./ui/WorkScene";
 
 /** How the deck shares cards: related projects sit on one card, in WORK_ORDER's order */
 const GROUPS = [
-  ["int8-perception-models", "cuda-kernels"],
-  ["rag-documentation-assistant", "compiler-log-troubleshooting", "llm-inference-serving"],
-  ["telemetry-anomaly-detection", "root-cause-analysis", "bert-ticket-routing"],
-  ["realtime-streaming-pipelines", "telecom-microservices", "mlflow-model-lifecycle"],
-  ["wafer-defect-classification", "manufacturing-anomaly-detection"],
-  ["manufacturing-data-platform"],
+  ["business-ai-agents", "client-software"],
+  ["multi-agent-workflows", "multimodal-ai", "ml-pipelines"],
+  ["nlp-predictive-modeling", "generative-ai-integration"],
+  ["backend-services", "web-apps-rest-apis"],
+  ["pixel-asset-extractor", "auto-gmessage", "hell-farmers"],
 ];
 
 /**
@@ -41,15 +40,15 @@ const WorkSection = () => {
         label="My work"
         title={
           <>
-            Models on the chip,
-            <br className="hidden md:block" /> and the systems around them.
+            AI that does the work,
+            <br className="hidden md:block" /> and the software around it.
           </>
         }
       >
         <p>
-          Perception models on in-vehicle AI chips, LLM tools engineers rely on, telecom AI over billions of records a
-          day, and machine learning for semiconductor manufacturing.{" "}
-          <span className="text-snow">Employer specifics are kept general; every figure is from production.</span>
+          LLM agents for clients, multi-agent workflows and ML pipelines at Waabi, NLP and generative AI at BenchSci,
+          web applications before that, and open-source tools of my own.{" "}
+          <span className="text-snow">Employer specifics are kept general.</span>
         </p>
         {PROFILE.links.github && (
           <ExternalLink

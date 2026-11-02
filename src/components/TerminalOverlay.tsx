@@ -38,7 +38,7 @@ const COMMAND_LIST = [
 ];
 
 const BOOT_LINES: { type: HistoryEntry["type"]; text: string }[] = [
-  { type: "system", text: "booting YUMIN_OS v2.4.1 …" },
+  { type: "system", text: "booting MITCHELL_OS v2.4.1 …" },
   { type: "system", text: "mounting /career … ok" },
   { type: "system", text: "establishing secure line … ok" },
   { type: "system", text: 'Authorization recognized. Type "help" to view directory.' },
@@ -48,7 +48,7 @@ const DEPLOY_LINES: { type: HistoryEntry["type"]; text: string }[] = [
   { type: "system", text: "PIPELINE_TRIGGERED: release/prod" },
   { type: "output", text: "[1/5] unit tests ........... all passed" },
   { type: "output", text: "[2/5] build ................ dist/ ready (vite, 2.5s)" },
-  { type: "output", text: "[3/5] int8 calibration ..... mAP delta < 1%" },
+  { type: "output", text: "[3/5] model evaluation ..... all checks passed" },
   { type: "output", text: "[4/5] k8s rollout .......... 3/3 pods healthy" },
   { type: "output", text: "[5/5] smoke checks ......... all endpoints 200" },
   { type: "system", text: "PROD IS GREEN. Ship it." },
@@ -341,7 +341,7 @@ export default function TerminalOverlay({ forceOpen = false, onClose }: Terminal
           newHistory.push({
             type: "output",
             text:
-              "IDENTITY: YUMIN CHEN\nROLE: SOFTWARE ENGINEER | AI ENGINEER\nLOC: WUHAN, CN\nFOCUS: MODEL DEPLOYMENT, LLM APPLICATIONS & AI AGENTS\nEMAIL: " +
+              "IDENTITY: MITCHELL GRAY\nROLE: SENIOR SOFTWARE ENGINEER | AI/ML ENGINEER\nLOC: WOODSTOCK, ON, CANADA\nFOCUS: AI AGENTS, LLM APPLICATIONS, ML PIPELINES & CUSTOM SOFTWARE\nEMAIL: " +
               PROFILE.email,
           });
           break;
@@ -412,19 +412,21 @@ export default function TerminalOverlay({ forceOpen = false, onClose }: Terminal
             text: (
               <div className="my-2 space-y-3">
                 {[
-                  { group: "PROGRAMMING", items: ["Python", "C++", "Go", "Java", "SQL", "TypeScript"] },
                   {
-                    group: "MACHINE LEARNING & AI",
-                    items: ["PyTorch", "LLMs", "RAG", "AI agents", "BERT", "LSTM", "Isolation Forest", "ResNet"],
+                    group: "CORE & CONSULTING",
+                    items: ["Python", "LLMs", "AI agents", "RAG", "Full-stack", "REST APIs", "Solution architecture"],
                   },
                   {
-                    group: "MODEL OPTIMIZATION",
-                    items: ["INT8 quantization", "CUDA", "Inference optimization", "Model deployment", "vLLM"],
+                    group: "AI & MACHINE LEARNING",
+                    items: ["Machine learning", "Multi-agent systems", "Multimodal AI", "NLP", "Generative AI"],
                   },
-                  { group: "BACKEND & APIS", items: ["FastAPI", "REST APIs", "Go and Java microservices"] },
-                  { group: "DATA & STORAGE", items: ["Kafka", "Flink", "Apache Spark", "Hive", "SQL databases"] },
-                  { group: "DEVOPS & TOOLS", items: ["Docker", "Kubernetes", "Git", "MLflow"] },
-                  { group: "FRONTEND", items: ["React"] },
+                  { group: "MLOPS", items: ["ML pipelines", "MLOps", "Predictive modeling", "Model evaluation"] },
+                  {
+                    group: "ENGINEERING",
+                    items: ["Backend development", "Data processing", "API integration", "Software architecture"],
+                  },
+                  { group: "WEB", items: ["JavaScript", "React", "SQL"] },
+                  { group: "LEADERSHIP", items: ["Technical leadership", "Code review", "Client consulting"] },
                 ].map((row) => (
                   <div key={row.group}>
                     <span className="text-emerald-400 font-bold block mb-1">{row.group}</span>
@@ -445,15 +447,19 @@ export default function TerminalOverlay({ forceOpen = false, onClose }: Terminal
           newHistory.push({
             type: "output",
             text: (
-              <pre className="my-2 text-[11px] sm:text-xs leading-relaxed whitespace-pre overflow-x-auto">{`* 2026 ── independent · software engineer | ai engineer
-│         backend · llm applications · rag · ai agents
-* 2022 ── black sesame technologies · senior ai software engineer
-│         30+ perception models · int8 · cuda · rag · vllm · team of 7
-* 2020 ── fiberhome technologies · software engineer, ai platform
-│         telecom anomaly detection · bert routing · kafka · flink
-* 2018 ── yangtze memory technologies · software engineer
-│         wafer defect classification · spark · hive · react
-* init ── b.eng, huazhong university of science and technology wuchang branch`}</pre>
+              <pre className="my-2 text-[11px] sm:text-xs leading-relaxed whitespace-pre overflow-x-auto">{`* 2026 ── independent · software engineer | ai/ml consultant
+│         ai agents · custom software · api integrations · rag
+* 2024 ── waabi · senior software engineer
+│         llm apps · multi-agent workflows · ml pipelines · multimodal ai
+* 2022 ── benchsci · senior software engineer, ai/ml
+│         nlp · predictive modeling · generative ai · ml pipelines
+* 2020 ── benchsci · software engineer
+│         backend services · data processing · integrations
+* 2018 ── tech mahindra · software engineer
+│         web apps · rest apis · react · sql
+* 2017 ── architech · software developer
+│         web apps · python · javascript · react
+* init ── b.sc. computer science, toronto metropolitan university`}</pre>
             ),
           });
           break;
@@ -526,12 +532,12 @@ export default function TerminalOverlay({ forceOpen = false, onClose }: Terminal
 `}</pre>
                 </div>
                 <div className="space-y-1">
-                  <div className="text-emerald-400 font-bold underline">yumin@os</div>
-                  <div className="text-xs">OS: yumin-sh 1.0</div>
+                  <div className="text-emerald-400 font-bold underline">mitchell@os</div>
+                  <div className="text-xs">OS: mitchell-sh 1.0</div>
                   <div className="text-xs">Host: portfolio-v3</div>
                   <div className="text-xs">Kernel: react-v18.x</div>
-                  <div className="text-xs">Shell: yumin-sh</div>
-                  <div className="text-xs">Uptime: {uptimeYears} years (INT8-optimized)</div>
+                  <div className="text-xs">Shell: mitchell-sh</div>
+                  <div className="text-xs">Uptime: {uptimeYears} years (production-tested)</div>
                   <div className="text-xs">Terminal: matrix-{theme}</div>
                 </div>
               </div>
@@ -684,7 +690,7 @@ export default function TerminalOverlay({ forceOpen = false, onClose }: Terminal
           <div className="flex items-center gap-3">
             <Terminal size={14} className="text-muted" aria-hidden="true" />
             <span className="t-label">Terminal</span>
-            <span className="t-figure text-[11px] text-muted hidden sm:inline">yumin@os:~</span>
+            <span className="t-figure text-[11px] text-muted hidden sm:inline">mitchell@os:~</span>
           </div>
           <button
             type="button"
@@ -709,7 +715,7 @@ export default function TerminalOverlay({ forceOpen = false, onClose }: Terminal
               >
                 {line.type === "input" ? (
                   <>
-                    <span className="shrink-0 opacity-70">yumin@os:~$</span>
+                    <span className="shrink-0 opacity-70">mitchell@os:~$</span>
                     <span className="text-white font-bold">{line.text}</span>
                   </>
                 ) : (
@@ -720,7 +726,7 @@ export default function TerminalOverlay({ forceOpen = false, onClose }: Terminal
 
             {!isBooting && (
               <form onSubmit={handleCommand} className="flex gap-2 items-center mt-3 group">
-                <span className="opacity-70">yumin@os:~$</span>
+                <span className="opacity-70">mitchell@os:~$</span>
                 <input
                   ref={inputRef}
                   type="text"

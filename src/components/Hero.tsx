@@ -5,6 +5,7 @@ import ParticlePortrait from "./ui/ParticlePortrait";
 import { photoHandoff } from "@/lib/photoHandoff";
 import { useLoading } from "@/hooks/useLoading";
 import { PROFILE } from "@/data/profile";
+import { inWords, yearsSince } from "@/lib/format";
 
 const base = import.meta.env.BASE_URL;
 import ExperienceTimer from "./ui/ExperienceTimer";
@@ -225,14 +226,14 @@ const Hero = () => {
             start={1.4}
             step={0.03}
             className="text-base md:text-[17px] text-white/60 font-medium leading-[1.6]"
-            text="I take *machine* *learning* from model to *production*. Eight years across autonomous-driving AI, telecommunications, and semiconductor manufacturing taught me what that demands: *speed*, accuracy, and systems that *hold* up."
+            text={`I build *software* that puts *AI* to *work*. ${inWords(yearsSince(PROFILE.careerStart))} years across web applications, backend services, and machine learning taught me what that demands: *reliability*, clear design, and systems that *hold* up.`}
           />
           <BlurWords
             show={show}
             start={1.7}
             step={0.022}
             className="text-xs md:text-sm text-white/55 font-light leading-relaxed"
-            text="I work mainly in Python and C++, with PyTorch, CUDA, Go, and Kafka, and I have shipped 30+ perception models onto *in-vehicle* *AI* *chips*."
+            text="I work mainly in Python, JavaScript, and React, and I ship *LLM* *agents*, multi-agent workflows, and ML pipelines into *production*."
           />
           <BlurWords
             show={show}
@@ -240,7 +241,7 @@ const Hero = () => {
             step={0.015}
             // The quieter lines step down from the first but still clear AA contrast for small text
             className="text-xs md:text-sm text-white/50 font-light leading-relaxed"
-            text="Today I build backend services, *LLM* applications, *RAG*, and AI-agent workflows as an *independent* engineer."
+            text="Today I consult *independently*, building custom software, *AI* *agents* that automate workflows, and API integrations for businesses."
           />
 
           <motion.div {...rise(2.2)} className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">

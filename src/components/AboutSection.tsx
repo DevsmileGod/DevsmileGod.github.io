@@ -15,14 +15,15 @@ import { useLocalTime } from "@/hooks/useLocalTime";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { fetchLatestRepositories, type GitHubRepo } from "@/lib/github";
 import { reveal } from "@/lib/motion";
-import { clamp01, monthDay } from "@/lib/format";
+import { clamp01, inWords, monthDay, yearsSince } from "@/lib/format";
 import { phase } from "@/lib/phase";
 
-const STATEMENT =
-  "I spent eight years putting machine learning into fabs, networks, and cars. Now I build LLM applications and the services around them, to the same standard.";
+const YEARS = yearsSince(PROFILE.careerStart);
+
+const STATEMENT = `I spent ${inWords(YEARS).toLowerCase()} years building web apps, backend services, and machine learning systems. Now I build AI agents and the software around them, for businesses that need them to work.`;
 
 /** Shown in place of "Latest on GitHub" while no GitHub username is set */
-const INDUSTRIES = ["Autonomous driving", "Telecommunications", "Semiconductors"];
+const INDUSTRIES = ["AI agents", "Machine learning", "Full-stack software"];
 
 const card = "spot relative rounded-lg border border-line bg-tile overflow-hidden";
 
@@ -405,25 +406,26 @@ const AboutSection = () => {
                     ))}
                   </svg>
                   <h3 className="relative t-heading text-3xl md:text-4xl">
-                    Fast models.
+                    Useful AI.
                     <br />
-                    <span className="text-emerald-400">Useful AI.</span>
+                    <span className="text-emerald-400">Solid software.</span>
                   </h3>
                   <DrawRule center className="w-10 relative bg-line my-5" />
                   <p className="relative t-body text-snow/70 text-[15px]">
-                    Latency, memory, and accuracy stay in scope from the first experiment to the last deploy.
+                    Models, APIs, databases, and frontends designed together, from the first requirement to the last
+                    deploy.
                   </p>
                 </motion.div>
 
                 {/* Story + actions */}
                 <motion.div ref={setCard(4)} className={`${card} md:col-span-6 lg:col-span-8 p-6 md:p-8 flex flex-col`}>
-                  <h3 className="t-heading text-3xl md:text-4xl">Three industries, one craft</h3>
+                  <h3 className="t-heading text-3xl md:text-4xl">From web apps to AI agents</h3>
                   <DrawRule className="w-10 bg-line mt-5 mb-5" />
                   <p className="t-body text-snow/70">
-                    I started on wafer defect inspection at Yangtze Memory, moved to telecom AI at FiberHome, then
-                    deployed perception models to automotive AI chips at Black Sesame, leading a team of seven. Now I
-                    work independently on backend services, LLM applications, and AI agents that hold up in production,
-                    not just in a demo.
+                    I started on web applications at Architech and Tech Mahindra, moved into backend services and then
+                    AI/ML at BenchSci, and built LLM applications and multi-agent workflows as a senior engineer at
+                    Waabi. Now I consult independently: custom software and AI agents that hold up in production, not
+                    just in a demo.
                   </p>
                   <button
                     type="button"
@@ -444,9 +446,9 @@ const AboutSection = () => {
                   data-reveal-skip
                   className="spot spot-light group relative rounded-lg overflow-hidden md:col-span-6 lg:col-span-4 bg-snow p-6 md:p-8 flex flex-col"
                 >
-                  <p className="relative t-heading text-3xl md:text-4xl text-night">Perception models deployed</p>
+                  <p className="relative t-heading text-3xl md:text-4xl text-night">Years building software</p>
                   <p className="relative t-wordmark leading-none text-[6rem] md:text-[7.5rem] mt-auto pt-8 text-night">
-                    <ScrambleNumber value="30" suffix="+" suffixClassName="text-emerald-500 plus-pulse" />
+                    <ScrambleNumber value={String(YEARS)} suffix="+" suffixClassName="text-emerald-500 plus-pulse" />
                   </p>
                   <DrawRule className="w-10 relative bg-night/40 mt-4" />
                 </motion.div>

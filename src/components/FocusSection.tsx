@@ -1,7 +1,7 @@
 import { motion, useReducedMotionConfig, useScroll, useTransform, type MotionValue } from "framer-motion";
 import { useRef } from "react";
 import { PROFILE } from "@/data/profile";
-import { clamp01 } from "@/lib/format";
+import { clamp01, yearsSince } from "@/lib/format";
 import { Portrait } from "./ui/Portrait";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 
@@ -9,23 +9,25 @@ import { useMediaQuery } from "@/hooks/useMediaQuery";
 const CARD_W = "min(520px, 86vw)";
 const CARD_H = "min(760px, 82vh)";
 
-const years = Math.floor((Date.now() - PROFILE.careerStart.getTime()) / (365.25 * 24 * 3600 * 1000));
+const years = yearsSince(PROFILE.careerStart);
+/** Since the first AI/ML role, at BenchSci */
+const aiYears = yearsSince(new Date("2022-10-01T00:00:00-04:00"));
 
-/** Real figures only, from the résumé, placed around the card: left column top-down, then right */
+/** Real figures only, counted from the résumé, placed around the card: left column top-down, then right */
 const STATS = [
-  { value: `${years}+`, label: "Years taking ML to production", side: "left", top: "16%" },
-  { value: "30+", label: "Perception models on in-vehicle AI chips", side: "left", top: "46%" },
+  { value: `${years}+`, label: "Years building software", side: "left", top: "16%" },
+  { value: `${aiYears}+`, label: "Years shipping AI and ML to production", side: "left", top: "46%" },
   // The same 30% step as the left pair (16% → 46%), measured up from the last figure below it
   {
-    value: "3.2×",
-    label: "Lower inference latency with INT8",
+    value: "3",
+    label: "Modalities in production: text, image, audio",
     side: "right",
     bottom: `calc(50% - ${CARD_H} / 2 + 30%)`,
   },
   // Sits on the card's bottom edge: its last line lines up with the card's foot
   {
-    value: "600+",
-    label: "Engineers using the RAG assistant I built",
+    value: "4",
+    label: "Toronto engineering teams before going independent",
     side: "right",
     bottom: `calc(50% - ${CARD_H} / 2)`,
   },
@@ -79,8 +81,7 @@ const FocusSection = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-night/70 via-transparent to-transparent" />
             </div>
             <p className="text-[15px] leading-[1.55] text-snow/85">
-              Fast enough for the chip, accurate enough for the road, and simple enough for the next engineer to
-              maintain.
+              Built around the real workflow, steady in production, and simple enough for the next engineer to maintain.
             </p>
             <p className="mt-4 font-signature text-[2.8rem] md:text-[3.4rem] leading-none text-snow">{PROFILE.first}</p>
           </div>
@@ -145,7 +146,7 @@ const FocusSection = () => {
                 {PROFILE.first}
               </p>
               <p className="sm:text-right text-[14px] md:text-[15px] leading-[1.55] text-snow/85 sm:max-w-[230px]">
-                Fast enough for the chip, accurate enough for the road, and simple enough for the next engineer to
+                Built around the real workflow, steady in production, and simple enough for the next engineer to
                 maintain.
               </p>
             </div>
