@@ -1,6 +1,3 @@
-/** Wuhan, China: UTC+8, no daylight saving */
-const LOCAL_MS = 8 * 3600000;
-
 export interface Elapsed {
   years: number;
   months: number;
@@ -10,18 +7,28 @@ export interface Elapsed {
   seconds: number;
 }
 
+/** The calendar date of an instant in a time zone, as a UTC date at midnight (daylight saving included) */
+const calendarDate = (at: Date, timeZone: string) => {
+  const parts = new Intl.DateTimeFormat("en-US", { timeZone, year: "numeric", month: "numeric", day: "numeric" })
+    .formatToParts(at)
+    .reduce<
+      Record<string, number>
+    >((acc, p) => (p.type === "literal" ? acc : { ...acc, [p.type]: Number(p.value) }), {});
+  return new Date(Date.UTC(parts.year, parts.month - 1, parts.day));
+};
+
 /** Days in a month. Month is zero-based and may overflow. */
 const daysInMonth = (year: number, month: number) => new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
 
 /**
- * Time from start to now, counted on the Wuhan calendar so it reads the same for every visitor.
- * Returns all zeros when now is before start.
+ * Time from start to now, counted on the calendar of `timeZone` (an IANA name such as
+ * "America/Toronto") so it reads the same for every visitor. Returns all zeros when now is before start.
  */
-export const elapsedSince = (start: Date, now: Date): Elapsed => {
+export const elapsedSince = (start: Date, now: Date, timeZone: string): Elapsed => {
   const diff = now.getTime() - start.getTime();
   if (!(diff > 0)) return { years: 0, months: 0, days: 0, hours: 0, minutes: 0, seconds: 0 };
-  const n = new Date(now.getTime() + LOCAL_MS);
-  const s = new Date(start.getTime() + LOCAL_MS);
+  const n = calendarDate(now, timeZone);
+  const s = calendarDate(start, timeZone);
   let years = n.getUTCFullYear() - s.getUTCFullYear();
   let months = n.getUTCMonth() - s.getUTCMonth();
   let days = n.getUTCDate() - s.getUTCDate();

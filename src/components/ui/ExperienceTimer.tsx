@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import ScrambleNumber from "@/components/ui/ScrambleNumber";
 import { pad2 } from "@/lib/format";
+import { PROFILE } from "@/data/profile";
 import { elapsedSince } from "@/lib/elapsed";
 
 interface ExperienceTimerProps {
@@ -43,8 +44,15 @@ const ExperienceTimer = ({ startDate, compact = false, inline = false }: Experie
     };
   }, []);
 
-  // Count calendar years, months and days on the Wuhan calendar, the same for every visitor
-  const { years, months, days, hours: hh, minutes: mm, seconds: ss } = elapsedSince(startDate, new Date());
+  // Count calendar years, months and days on the owner's own calendar, the same for every visitor
+  const {
+    years,
+    months,
+    days,
+    hours: hh,
+    minutes: mm,
+    seconds: ss,
+  } = elapsedSince(startDate, new Date(), PROFILE.timeZone);
   const readout = `${years}y ${months}m ${days}d · ${pad2(hh)}:${pad2(mm)}:${pad2(ss)}`;
 
   if (inline) {

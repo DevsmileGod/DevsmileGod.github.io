@@ -1,10 +1,11 @@
 import { describe, it, expect } from "vitest";
 import { elapsedSince } from "../elapsed";
 
-// Midnight on the Wuhan calendar.
+// A zone with no daylight saving, so a fixed offset gives local midnight.
+const ZONE = "Asia/Shanghai";
 const local = (d: string, time = "00:00:00") => new Date(`${d}T${time}+08:00`);
-const ymd = (start: Date, now: Date) => {
-  const { years, months, days } = elapsedSince(start, now);
+const ymd = (start: Date, now: Date, zone = ZONE) => {
+  const { years, months, days } = elapsedSince(start, now, zone);
   return [years, months, days];
 };
 
@@ -27,7 +28,7 @@ describe("elapsedSince", () => {
 
   const career = local("2021-07-26");
   it("career start to 9 Oct 2026 noon: 5y 2m 13d 12:00:00", () => {
-    expect(elapsedSince(career, local("2026-10-09", "12:00:00"))).toEqual({
+    expect(elapsedSince(career, local("2026-10-09", "12:00:00"), ZONE)).toEqual({
       years: 5,
       months: 2,
       days: 13,
@@ -43,7 +44,7 @@ describe("elapsedSince", () => {
     expect(ymd(career, local("2024-03-01"))).toEqual([2, 7, 4]);
   });
   it("career start to 26 Jul 2026 05:04:03: exactly 5y, 05:04:03", () => {
-    expect(elapsedSince(career, local("2026-07-26", "05:04:03"))).toEqual({
+    expect(elapsedSince(career, local("2026-07-26", "05:04:03"), ZONE)).toEqual({
       years: 5,
       months: 0,
       days: 0,
@@ -54,10 +55,17 @@ describe("elapsedSince", () => {
   });
 
   it("same instant is all zeros", () => {
-    expect(elapsedSince(career, career)).toEqual({ years: 0, months: 0, days: 0, hours: 0, minutes: 0, seconds: 0 });
+    expect(elapsedSince(career, career, ZONE)).toEqual({
+      years: 0,
+      months: 0,
+      days: 0,
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
+    });
   });
   it("now before start is all zeros", () => {
-    expect(elapsedSince(career, local("2020-01-01"))).toEqual({
+    expect(elapsedSince(career, local("2020-01-01"), ZONE)).toEqual({
       years: 0,
       months: 0,
       days: 0,
@@ -70,10 +78,16 @@ describe("elapsedSince", () => {
   it("never yields negative days or 12+ months over a sweep", () => {
     const start = local("2023-01-31");
     for (let i = 0; i < 1200; i++) {
-      const e = elapsedSince(start, new Date(start.getTime() + i * 86400000 + 3600000));
+      const e = elapsedSince(start, new Date(start.getTime() + i * 86400000 + 3600000), ZONE);
       expect(e.days).toBeGreaterThanOrEqual(0);
       expect(e.months).toBeGreaterThanOrEqual(0);
       expect(e.months).toBeLessThan(12);
     }
+  });
+
+  it("counts days on a daylight-saving calendar: Toronto midnight to midnight across the spring change", () => {
+    // 1 Feb 2017 00:00 EST to 1 Apr 2017 00:00 EDT: exactly two months on the Toronto calendar
+    const start = new Date("2017-02-01T00:00:00-05:00");
+    expect(ymd(start, new Date("2017-04-01T00:00:00-04:00"), "America/Toronto")).toEqual([0, 2, 0]);
   });
 });
