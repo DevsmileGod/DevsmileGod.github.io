@@ -14,15 +14,16 @@ import { BASE_PATH, CUSTOM_DOMAIN, PROFILE, SITE_URL } from "./src/data/profile.
 const PAGES_BASE = BASE_PATH;
 
 /**
- * Build only: on a custom domain, writes the CNAME file GitHub Pages reads, and moves the 404 page's
- * redirect (written for /Portfolio/, which its tests check) to the domain's root.
+ * Build only: on a custom domain, writes the CNAME file GitHub Pages reads. Served from the root
+ * (custom domain or <user>.github.io), moves the 404 page's redirect, written for /Portfolio/ (which
+ * its tests check), to the root.
  */
 const customDomain = () => ({
   name: "custom-domain",
   apply: "build" as const,
   closeBundle() {
-    if (!CUSTOM_DOMAIN) return;
-    writeFileSync("dist/CNAME", `${CUSTOM_DOMAIN}\n`);
+    if (CUSTOM_DOMAIN) writeFileSync("dist/CNAME", `${CUSTOM_DOMAIN}\n`);
+    if (BASE_PATH === "/Portfolio/") return;
     const notFound = "dist/404.html";
     writeFileSync(notFound, readFileSync(notFound, "utf8").replaceAll("/Portfolio/", BASE_PATH));
   },
@@ -51,9 +52,9 @@ export default defineConfig(({ command, isPreview }) => ({
       // Install prompts fetch the manifest icons themselves; precaching them cost ~174 KB on every first visit
       includeManifestIcons: false,
       manifest: {
-        name: `${PROFILE.name} | Software Engineer`,
+        name: `${PROFILE.name} | ${PROFILE.title}`,
         short_name: PROFILE.name,
-        description: `${PROFILE.name}, Software Engineer and AI Engineer building production AI and the systems around it.`,
+        description: `${PROFILE.name}, ${PROFILE.title} and ${PROFILE.focus} building AI agents, ML systems, and the software around them.`,
         theme_color: "#000000",
         background_color: "#000000",
         display: "standalone",
