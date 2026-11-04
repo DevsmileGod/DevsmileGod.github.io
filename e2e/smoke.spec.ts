@@ -15,7 +15,7 @@ test("home page renders the splash screen, then the site", async ({ page }) => {
   await expect(page.getByTestId("splash-screen")).toBeVisible();
   await expect(page.getByTestId("splash-screen")).toBeHidden({ timeout: 6_000 });
 
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Yumin");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Mitchell");
   await expect(page.locator("#app-shell-loader")).toHaveCount(0);
   expect(errors).toEqual([]);
 });
@@ -27,11 +27,11 @@ test("work shows every project on the deck", async ({ page }) => {
 
   // Sections mount lazily as they near the viewport, so bring Work into view first
   await page.locator("#work").first().scrollIntoViewIfNeeded();
-  await expect(page.getByRole("heading", { name: "INT8 Perception Models" })).toBeAttached({ timeout: 15_000 });
-  await expect(page.locator("#case-int8-perception-models")).toBeAttached();
-  // Fourteen projects on six cards: related ones share a card
-  await expect(page.locator("#work ol > li")).toHaveCount(6);
-  await expect(page.locator("#work ol h3")).toHaveCount(14);
+  await expect(page.getByRole("heading", { name: "AI Agents for Business" })).toBeAttached({ timeout: 15_000 });
+  await expect(page.locator("#case-business-ai-agents")).toBeAttached();
+  // Twelve projects on five cards: related ones share a card
+  await expect(page.locator("#work ol > li")).toHaveCount(5);
+  await expect(page.locator("#work ol h3")).toHaveCount(12);
   expect(errors).toEqual([]);
 });
 

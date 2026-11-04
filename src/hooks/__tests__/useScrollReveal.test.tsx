@@ -9,7 +9,7 @@ const Page = ({ children }: { children: React.ReactNode }) => {
   return <div ref={root}>{children}</div>;
 };
 
-const LONG = "Perception models on in-vehicle AI chips, LLM tools engineers rely on, and the systems around them.";
+const LONG = "LLM agents that automate business workflows, ML pipelines in production, and the systems around them.";
 
 describe("useScrollReveal", () => {
   afterEach(() => {
