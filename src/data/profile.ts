@@ -35,7 +35,7 @@ export const PROFILE = {
   title: "Senior Software Engineer",
   /** The second half of the hero's label: "Senior Software Engineer · AI/ML Engineer" */
   focus: "AI/ML Engineer",
-  email: "mitchell.gray.3313@gmail.com",
+  email: "mitchellgray644@proton.me",
   /** Under public/, relative to BASE_URL */
   resume: "mitchell-gray-resume.pdf",
   resumeDownloadName: "mitchell-gray-resume.pdf",
