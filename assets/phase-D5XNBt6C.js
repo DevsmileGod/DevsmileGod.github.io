@@ -1,0 +1,1 @@
+import{r as e}from"./ExternalLink-DBywn3N6.js";var t=e=>e*e*(3-2*e),n=(n,r,i)=>t(e((n-r)/(i-r)));export{n,t};
